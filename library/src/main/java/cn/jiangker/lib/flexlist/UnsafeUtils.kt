@@ -1,8 +1,10 @@
 package cn.jiangker.lib.flexlist
 
+import android.annotation.SuppressLint
 import java.lang.Exception
 import java.lang.reflect.Method
 
+@SuppressLint("DiscouragedPrivateApi")
 object UnsafeUtils {
 
     private var unSafe: Any?
@@ -20,6 +22,7 @@ object UnsafeUtils {
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun <T> getObj(clazz: Class<T>): T? {
         return method?.invoke(unSafe, clazz) as T?
     }
