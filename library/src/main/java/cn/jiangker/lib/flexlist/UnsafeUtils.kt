@@ -14,8 +14,10 @@ object UnsafeUtils {
         try {
             val unsafe = Class.forName("sun.misc.Unsafe")
             val filed = unsafe.getDeclaredField("theUnsafe")
+            filed.isAccessible = true
             unSafe = filed.get(null)
             method = unsafe.getDeclaredMethod("allocateInstance", Class::class.java)
+            method?.isAccessible = true
         } catch (e: Exception) {
             unSafe = null
             method = null
