@@ -32,14 +32,12 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         })
-        adapter.injectFunc(object : ItemTwoClick {
-            override fun click(itemTwo: ItemTwo) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "${itemTwo.item1} & ${itemTwo.item2}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        adapter.injectFunc(ItemTwoClick {
+            Toast.makeText(
+                this@MainActivity,
+                "${it.item1} & ${it.item2}",
+                Toast.LENGTH_SHORT
+            ).show()
         })
     }
 }

@@ -1,17 +1,12 @@
 package cn.jiangker.flexlist
 
-import android.view.View
-import android.widget.TextView
+import cn.jiangker.flexlist.databinding.ItemOneBinding
 import cn.jiangker.lib.flexlist.FlexHolder
 
-class ItemOneHolder(itemView: View) : FlexHolder<ItemOne>(itemView) {
-
-    private val tvCenter by lazy(LazyThreadSafetyMode.NONE) { itemView.findViewById<TextView>(R.id.tv_center) }
-
-    override fun layoutParams() = R.layout.item_one
+class ItemOneHolder(private val binding: ItemOneBinding) : FlexHolder<ItemOne>(binding) {
 
     override fun bindData(data: ItemOne) {
-        tvCenter.text = data.item
+        binding.tvCenter.text = data.item
         itemView.setOnClickListener {
             getInjectObj(ItemOneClick::class.java)?.click(data)
         }

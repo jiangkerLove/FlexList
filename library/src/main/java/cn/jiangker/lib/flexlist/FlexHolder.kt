@@ -1,13 +1,11 @@
 package cn.jiangker.lib.flexlist
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
-abstract class FlexHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class FlexHolder<T>(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
     var injectFunc: ((Class<out Any>) -> Any?)? = null
-
-    abstract fun layoutParams(): Int
 
     abstract fun bindData(data: T)
 

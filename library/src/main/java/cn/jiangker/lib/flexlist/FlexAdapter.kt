@@ -1,8 +1,6 @@
 package cn.jiangker.lib.flexlist
 
 import android.util.SparseArray
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.util.set
 import androidx.recyclerview.widget.RecyclerView
@@ -35,12 +33,7 @@ class FlexAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlexHolder<Any> {
         val flex = flexArray[viewType]!!
-        val constructor = flex.holderClass.getDeclaredConstructor(View::class.java)
-        val newInstance =
-            UnsafeUtils.getObj(flex.holderClass) ?: constructor.newInstance(View(parent.context))
-        val layoutParams = newInstance.layoutParams()
-        val view = LayoutInflater.from(parent.context).inflate(layoutParams, parent, false)
-        return constructor.newInstance(view)
+        return flex.createViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: FlexHolder<Any>, position: Int) {

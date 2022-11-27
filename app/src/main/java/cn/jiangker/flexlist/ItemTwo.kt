@@ -1,19 +1,15 @@
 package cn.jiangker.flexlist
 
-import android.view.View
-import android.widget.TextView
+import cn.jiangker.flexlist.databinding.ItemTwoBinding
 import cn.jiangker.lib.flexlist.FlexHolder
 
-class ItemTwoHolder(itemView: View) : FlexHolder<ItemTwo>(itemView) {
-
-    private val tvLeft by lazy(LazyThreadSafetyMode.NONE) { itemView.findViewById<TextView>(R.id.tv_left) }
-    private val tvRight by lazy(LazyThreadSafetyMode.NONE) { itemView.findViewById<TextView>(R.id.tv_right) }
-
-    override fun layoutParams() = R.layout.item_two
+class ItemTwoHolder(
+    private val binding: ItemTwoBinding
+) : FlexHolder<ItemTwo>(binding) {
 
     override fun bindData(data: ItemTwo) {
-        tvLeft.text = data.item1
-        tvRight.text = data.item2
+        binding.tvLeft.text = data.item1
+        binding.tvRight.text = data.item2
         itemView.setOnClickListener {
             getInjectObj(ItemTwoClick::class.java)?.click(data)
         }
@@ -26,6 +22,6 @@ class ItemTwo(
     val item2: String
 )
 
-interface ItemTwoClick {
+fun interface ItemTwoClick {
     fun click(itemTwo: ItemTwo)
 }

@@ -28,6 +28,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -43,7 +46,7 @@ task generateSourcesJar(type: Jar) {
     classifier 'sources'
 }
 
-def versionName = "1.0.0-SNAPSHOT"
+def versionName = "2.0.0-SNAPSHOT"
 
 afterEvaluate {
     publishing {
